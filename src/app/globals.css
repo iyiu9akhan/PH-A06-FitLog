@@ -1,0 +1,19 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@700&display=swap");
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --color-background: #090a0d;
+  --color-brand: #c2f800;
+  --color-title: #ffffff;
+  --color-subTitle: #9ca3af;
+
+  --font-primary: "Oswald", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+}
+body {
+  background-color: var(--color-background);
+  color: var(--color-title);
+  list-style-type: none;
+}
