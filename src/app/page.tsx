@@ -1,12 +1,13 @@
+import Banner from "@/components/Banner";
 import Container from "@/components/Container";
+import Library from "@/components/Library";
 
 export default function Home() {
   return (
-    <div className="">
-      <main className="">
-        <Container>
-          <h1>Lorem ipsum dolor sit amet.</h1>
-        </Container>
+    <div>
+      <main>
+        <Banner/>
+        <Library/>
       </main>
     </div>
   );

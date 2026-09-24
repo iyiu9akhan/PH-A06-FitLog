@@ -40,11 +40,23 @@ function Navbar() {
 
   const links_end = (
     <>
-      <Link href="/" className="text-title text-sm flex items-center gap-1">
-        plan <span>2</span>
+      <Link
+        href="/"
+        className="text-[#D1D5DB] font-secondary font-medium text-[12px] leading-4 flex items-center gap-2 capitalize"
+      >
+        plan{" "}
+        <span className="px-1.5 py-0.5  rounded-full bg-brand font-bold text-[11px] text-[#000000]">
+          2
+        </span>
       </Link>
-      <Link href="/" className="text-title text-sm flex items-center gap-1">
-        saved <span>2</span>
+      <Link
+        href="/"
+        className="text-subTitle font-secondary font-medium text-[12px] leading-4 flex items-center gap-2 capitalize"
+      >
+        saved{" "}
+        <span className="px-1.5 py-0.5  rounded-full border border-[#2D313B] font-bold text-[11px] text-[#D1D5DB]">
+          2
+        </span>
       </Link>
     </>
   );
