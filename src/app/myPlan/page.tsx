@@ -5,7 +5,7 @@ function pages() {
   return (
     <>
       <Container>
-        <div className="mt-12 mx-6">
+        <div className="mx-6 mt-32">
           <h1 className="uppercase font-primary font-bold text-[30px] leading-9 tracking-[-0.75px] mb-2">
             my plan
           </h1>

@@ -1,13 +1,15 @@
 import Container from "@/components/Container";
 import React from "react";
-import detailsDemo from "@/assets/details_demo.png";
+import detailsDemo from "@/assets/details/details_demo.png";
+import buttonIcon from "@/assets/details/button_icon.png";
 import Image from "next/image";
+import { LuBookmark } from "react-icons/lu";
 
 function page() {
   return (
     <>
       <Container>
-        <div className="mt-12 mx-6 flex justify-between ">
+        <div className="mb-12 mt-32 mx-6 flex justify-between ">
           <div>
             <Image
               src={detailsDemo}
@@ -31,36 +33,64 @@ function page() {
                 arms
               </p>
             </div>
-            <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mb-8">
+            <div className="overflow-x-auto rounded-2xl border border-[#232834] bg-[#151922] mb-8">
               <table className="table">
                 <tbody>
                   <tr>
-                    <td>EQUIPMENT</td>
-                    <td className="text-end">Barbell, Bench</td>
+                    <td className="font-secondary font-bold text-[12px] leading-4 tracking-[0.6px] text-subTitle uppercase px-6 py-4  border-[#1E2330]">
+                      EQUIPMENT
+                    </td>
+                    <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
+                      Barbell, Bench
+                    </td>
                   </tr>
                   <tr>
-                    <td>DIFFICULTY</td>
-                    <td className="text-end">Intermediate</td>
+                    <td className="font-secondary font-bold text-[12px] leading-4 tracking-[0.6px] text-subTitle uppercase px-6 py-4 border-[#1E2330]">
+                      DIFFICULTY
+                    </td>
+                    <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
+                      Intermediate
+                    </td>
                   </tr>
                   <tr>
-                    <td>SETS</td>
-                    <td className="text-end">4</td>
+                    <td className="font-secondary font-bold text-[12px] leading-4 tracking-[0.6px] text-subTitle uppercase px-6 py-4 border-[#1E2330]">
+                      SETS
+                    </td>
+                    <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
+                      4
+                    </td>
                   </tr>
                   <tr>
-                    <td>REPS</td>
-                    <td className="text-end">6-8</td>
+                    <td className="font-secondary font-bold text-[12px] leading-4 tracking-[0.6px] text-subTitle uppercase px-6 py-4 border-[#1E2330]">
+                      REPS
+                    </td>
+                    <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
+                      6-8
+                    </td>
                   </tr>
                   <tr>
-                    <td>DURATION</td>
-                    <td className="text-end">25 min</td>
+                    <td className="font-secondary font-bold text-[12px] leading-4 tracking-[0.6px] text-subTitle uppercase px-6 py-4 border-[#1E2330]">
+                      DURATION
+                    </td>
+                    <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
+                      25 min
+                    </td>
                   </tr>
                   <tr>
-                    <td>CALORIES</td>
-                    <td className="text-end">180 kcal</td>
+                    <td className="font-secondary font-bold text-[12px] leading-4 tracking-[0.6px] text-subTitle uppercase px-6 py-4 border-[#1E2330]">
+                      CALORIES
+                    </td>
+                    <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
+                      180 kcal
+                    </td>
                   </tr>
                   <tr>
-                    <td>RATING</td>
-                    <td className="text-end">4.8</td>
+                    <td className="font-secondary font-bold text-[12px] leading-4 tracking-[0.6px] text-subTitle uppercase px-6 py-4 border-[#1E2330]">
+                      RATING
+                    </td>
+                    <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
+                      4.8
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -81,11 +111,13 @@ function page() {
               </li>
             </ol>
             <div className="flex gap-4 items-center font-secondary">
-              <button className="bg-brand px-6 py-3 rounded-xl text-[#0F1115] font-semibold leading-5 cursor-pointer">
-                Add to today's plan
+              <button className="bg-brand px-6 py-3 rounded-xl text-[#0F1115] font-semibold leading-5 cursor-pointer flex items-center gap-2">
+                <Image src={buttonIcon} alt="#buttonIcon" />
+                <p> Add to today's plan</p>
               </button>
-              <button className="text-[#E5E7EB] px-6 py-3 rounded-xl border border-[#374151] font-medium leading-5 cursor-pointer">
-                Save for later
+              <button className="text-[#E5E7EB] px-6 py-3 rounded-xl border border-[#374151] font-medium leading-5 cursor-pointer flex items-center gap-2">
+                <LuBookmark />
+                <p> Save for later</p>
               </button>
             </div>
           </div>

@@ -63,7 +63,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="border-b border-[#1B1F28]">
+      <div className="border-b border-[#1B1F28] fixed top-0 left-0 w-full z-999 bg-background">
         <Container>
           <div className="navbar px-6 py-6.5 ">
             <div className="navbar-start">
