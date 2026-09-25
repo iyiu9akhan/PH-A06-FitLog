@@ -97,12 +97,15 @@ function Navbar() {
                   {links_center}
                 </ul>
               </div>
-              <div className="lg:flex items-center gap-2.5 cursor-pointer hidden">
-                <Image src={navbar_logo} alt="#navbar_logo" />
-                <p className="font-primary text-title font-black text-[18px] leading-7 tracking-[0.9px]">
-                  FITLOG
-                </p>
-              </div>
+              <Link href="/">
+                {" "}
+                <div className="lg:flex items-center gap-2.5 cursor-pointer hidden">
+                  <Image src={navbar_logo} alt="#navbar_logo" />
+                  <p className="font-primary text-title font-black text-[18px] leading-7 tracking-[0.9px]">
+                    FITLOG
+                  </p>
+                </div>
+              </Link>
             </div>
 
             <div className="navbar-center lg:hidden items-center gap-2.5 cursor-pointer flex">

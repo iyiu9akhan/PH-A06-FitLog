@@ -4,34 +4,58 @@ import detailsDemo from "@/assets/details/details_demo.png";
 import buttonIcon from "@/assets/details/button_icon.png";
 import Image from "next/image";
 import { LuBookmark } from "react-icons/lu";
+import { workoutData } from "@/types/WorkoutData";
 
-function page() {
+interface PageProps {
+  params: Promise<{
+    detailsId: string;
+  }>;
+}
+
+const page = async ({ params }: PageProps) => {
+  const { detailsId } = await params;
+  const res = await fetch(
+    `https://api.abcz.workers.dev/api/fitlog/${detailsId}`,
+  );
+  const data: workoutData = await res.json();
+  // console.log(data.length);
+
   return (
     <>
       <Container>
-        <div className="mb-12 mt-32 mx-6 flex justify-between ">
+        {/* {data.map((item) => (
+        ))} */}
+        <div className="mb-12 mt-32 mx-6 flex justify-between">
           <div>
+            {/* <Image
+                src={detailsDemo}
+                alt="#details_demo_img"
+                className="rounded-2xl"
+              /> */}
             <Image
-              src={detailsDemo}
-              alt="#details_demo_img"
-              className="rounded-2xl"
+              src={data.image}
+              alt={data.name}
+              width={588}
+              height={735}
+              className="rounded-t-2xl w-147 h-183.75 object-cover rounded-2xl"
             />
           </div>
           <div>
             <h1 className="font-primary font-bold text-[36px] leading-10 tracking-[-0.9px] text-title mb-3">
-              BARBELL BENCH PRESS
+              {data.name}
             </h1>
             <p className="max-w-xl font-secondary font-normal text-[16px] leading-6 text-subTitle mb-5">
-              A compound press that builds chest thickness, triceps, and
-              pressing power from a stable bench.
+              {data.description}
             </p>
             <div className="font-secondary font-semibold text-[12px] leading-4 text-[#0F1115] flex items-center gap-2.5 rounded capitalize mb-7">
-              <p className="bg-brand px-3.5 py-1 leading-4 rounded-full">
-                chest
-              </p>
-              <p className="bg-brand px-3.5 py-1 leading-4 rounded-full">
-                arms
-              </p>
+              {data.muscleGroups.map((group, index) => (
+                <p
+                  key={index}
+                  className="leading-[16.5px] px-2.5 py-0.5 bg-brand rounded-full"
+                >
+                  {group}
+                </p>
+              ))}
             </div>
             <div className="overflow-x-auto rounded-2xl border border-[#232834] bg-[#151922] mb-8">
               <table className="table">
@@ -41,7 +65,7 @@ function page() {
                       EQUIPMENT
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                      Barbell, Bench
+                    {data.equipment}
                     </td>
                   </tr>
                   <tr>
@@ -49,7 +73,7 @@ function page() {
                       DIFFICULTY
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                      Intermediate
+                     {data.difficulty}
                     </td>
                   </tr>
                   <tr>
@@ -57,7 +81,7 @@ function page() {
                       SETS
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                      4
+                      {data.sets}
                     </td>
                   </tr>
                   <tr>
@@ -65,7 +89,7 @@ function page() {
                       REPS
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                      6-8
+                     {data.reps}
                     </td>
                   </tr>
                   <tr>
@@ -73,7 +97,7 @@ function page() {
                       DURATION
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                      25 min
+                      {data.duration} min
                     </td>
                   </tr>
                   <tr>
@@ -81,7 +105,7 @@ function page() {
                       CALORIES
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                      180 kcal
+                      {data.caloriesBurned} kcal
                     </td>
                   </tr>
                   <tr>
@@ -89,7 +113,7 @@ function page() {
                       RATING
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                      4.8
+                    {data.rating}
                     </td>
                   </tr>
                 </tbody>
@@ -125,6 +149,6 @@ function page() {
       </Container>
     </>
   );
-}
+};
 
 export default page;
