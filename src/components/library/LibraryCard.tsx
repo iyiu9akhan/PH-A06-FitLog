@@ -17,7 +17,7 @@ const LibraryCard = async () => {
       <div className="grid grid-cols-3 gap-x-6.25 gap-y-[24.5px] mb-19.5">
         {data.map((item) => (
           <Link href={`./details/${item.id}`} key={item.id}>
-            <div className="rounded-2xl bg-[#15171D]">
+            <div className="rounded-2xl bg-[#15171D] group hover:border hover:border-brand/50 border border-[#15171D] duration-300">
               {/* <Image src={item.image} alt="#card_img" className="rounded-t-2xl" /> */}
               <Image
                 src={item.image}
@@ -46,19 +46,19 @@ const LibraryCard = async () => {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1.5">
                     <Image src={clock_icon} alt="#progress_icon" />
-                    <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle">
+                    <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle group-hover:text-brand duration-300">
                       {item.duration}
                     </p>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Image src={progress_icon} alt="#progress_icon" />
-                    <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle">
+                    <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle group-hover:text-brand duration-300">
                       {item.caloriesBurned} kcal
                     </p>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Image src={star_icon} alt="#progress_icon" />
-                    <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle">
+                    <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle group-hover:text-brand duration-300">
                       {item.rating}
                     </p>
                   </div>

@@ -5,7 +5,7 @@ import LibraryCard from "./LibraryCard";
 function Library() {
   return (
     <>
-      <div>
+      <div id="library">
         <Container>
           <div className="mx-6">
             <h1 className="uppercase font-primary font-bold text-[30px] leading-9 tracking-[-0.75px] mb-1">

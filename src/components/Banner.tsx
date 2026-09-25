@@ -21,10 +21,10 @@ function Banner() {
               into today's plan, and watch the week's work add up.
             </p>
             <Link
-              href="/"
+              href="#library"
               className="font-secondary font-bold text-[10px] md:text-[12px] leading-4 tracking-[0.3px] text-[#000000] uppercase px-6 py-3 rounded-md bg-brand"
             >
-              browser workouts
+              browse workouts
             </Link>
           </div>
           <div className="mt-20 md:mt-0">

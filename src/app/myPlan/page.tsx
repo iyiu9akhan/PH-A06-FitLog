@@ -47,16 +47,6 @@ function pages() {
               </h1>
             </div>
           </div>
-          {/* <div className="bg-[#151921] border border-[#232732] rounded-xl inline-flex items-center gap-0.5 px-1 py-1.25 mb-6">
-            <p className="font-secondary font-normal text-[12px] leading-4 text-[#8A92A0] capitalize px-4 py-1.5 rounded-lg cursor-pointer">
-              today's plan
-            </p>
-            <p className="font-secondary font-bold text-[12px] leading-4 text-title capitalize px-9 py-1.75 bg-[#1F242D] border border-[#2B303D] rounded-lg cursor-pointer">
-              saved
-            </p>
-          </div> */}
-          {/* <TodaysPlan/>
-          <Saved /> */}
           <PlanTabs/>
         </div>
       </Container>

@@ -15,8 +15,7 @@ function PlanTabs() {
   return (
     <>
       <div className="flex items-center justify-between mb-6">
-        {/* Tabs */}
-        <div className="bg-[#151921] border border-[#232732] rounded-xl inline-flex items-center gap-0.5 px-1 py-1.25">
+        <div className="bg-[#151921] border border-[#232732] rounded-xl inline-flex items-center gap-0.5 px-1 py-1.25 ">
           <p
             onClick={() => setActiveTab("plan")}
             className={
@@ -25,21 +24,20 @@ function PlanTabs() {
                 : "font-secondary font-normal text-[12px] leading-4 text-[#8A92A0] capitalize px-4 py-1.5 rounded-lg cursor-pointer"
             }
           >
-            today&apos;s plan
+            today's plan
           </p>
           <p
             onClick={() => setActiveTab("saved")}
             className={
               activeTab === "saved"
-                ? "font-secondary font-bold text-[12px] leading-4 text-title capitalize px-9 py-1.75 bg-[#1F242D] border border-[#2B303D] rounded-lg cursor-pointer"
-                : "font-secondary font-normal text-[12px] leading-4 text-[#8A92A0] capitalize px-9 py-1.75 rounded-lg cursor-pointer"
+                ? "font-secondary font-bold text-[12px] leading-4 text-title capitalize px-9 py-1.5 bg-[#1F242D] border border-[#2B303D] rounded-lg cursor-pointer"
+                : "font-secondary font-normal text-[12px] leading-4 text-[#8A92A0] capitalize px-9 py-1.5 rounded-lg cursor-pointer"
             }
           >
             saved
           </p>
         </div>
 
-        {/* Sort By */}
         <div className="flex items-center gap-3 relative">
           <span className="font-secondary font-normal text-[13px] leading-4 text-subTitle">
             Sort By

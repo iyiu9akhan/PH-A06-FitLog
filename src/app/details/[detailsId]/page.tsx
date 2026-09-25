@@ -1,10 +1,10 @@
+// 'use client';
 import Container from "@/components/Container";
-import React from "react";
-import detailsDemo from "@/assets/details/details_demo.png";
 import buttonIcon from "@/assets/details/button_icon.png";
 import Image from "next/image";
 import { LuBookmark } from "react-icons/lu";
 import { workoutData } from "@/types/WorkoutData";
+import ActionButtons from "../ActionBtn";
 
 interface PageProps {
   params: Promise<{
@@ -12,26 +12,20 @@ interface PageProps {
   }>;
 }
 
+
+
 const page = async ({ params }: PageProps) => {
   const { detailsId } = await params;
   const res = await fetch(
     `https://api.abcz.workers.dev/api/fitlog/${detailsId}`,
   );
   const data: workoutData = await res.json();
-  // console.log(data.length);
 
   return (
     <>
       <Container>
-        {/* {data.map((item) => (
-        ))} */}
         <div className="mb-12 mt-32 mx-6 flex justify-between">
           <div>
-            {/* <Image
-                src={detailsDemo}
-                alt="#details_demo_img"
-                className="rounded-2xl"
-              /> */}
             <Image
               src={data.image}
               alt={data.name}
@@ -65,7 +59,7 @@ const page = async ({ params }: PageProps) => {
                       EQUIPMENT
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                    {data.equipment}
+                      {data.equipment}
                     </td>
                   </tr>
                   <tr>
@@ -73,7 +67,7 @@ const page = async ({ params }: PageProps) => {
                       DIFFICULTY
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                     {data.difficulty}
+                      {data.difficulty}
                     </td>
                   </tr>
                   <tr>
@@ -89,7 +83,7 @@ const page = async ({ params }: PageProps) => {
                       REPS
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                     {data.reps}
+                      {data.reps}
                     </td>
                   </tr>
                   <tr>
@@ -113,7 +107,7 @@ const page = async ({ params }: PageProps) => {
                       RATING
                     </td>
                     <td className="text-end font-secondary text-[14px] leading-5 text-[#E5E7EB] px-6 py-4 border-[#1E2330]">
-                    {data.rating}
+                      {data.rating}
                     </td>
                   </tr>
                 </tbody>
@@ -134,7 +128,7 @@ const page = async ({ params }: PageProps) => {
                 Keep shoulder blades pinched and a natural arch in the back.
               </li>
             </ol>
-            <div className="flex gap-4 items-center font-secondary">
+            {/* <div className="flex gap-4 items-center font-secondary">
               <button className="bg-brand px-6 py-3 rounded-xl text-[#0F1115] font-semibold leading-5 cursor-pointer flex items-center gap-2">
                 <Image src={buttonIcon} alt="#buttonIcon" />
                 <p> Add to today's plan</p>
@@ -143,7 +137,8 @@ const page = async ({ params }: PageProps) => {
                 <LuBookmark />
                 <p> Save for later</p>
               </button>
-            </div>
+            </div> */}
+            <ActionButtons item={data}/>
           </div>
         </div>
       </Container>

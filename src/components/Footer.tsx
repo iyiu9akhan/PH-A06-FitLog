@@ -5,7 +5,7 @@ import Image from "next/image";
 function Footer() {
   return (
     <>
-      <div className="border-t border-[#1A1D24] bg-[#090A0D]">
+      <div className="border-t border-[#1A1D24] bg-[#0F1115]">
         <Container>
           <div className="flex items-center justify-between">
             <div className="flex gap-2 px-6 py-10">
