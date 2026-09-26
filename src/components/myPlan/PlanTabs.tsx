@@ -1,16 +1,50 @@
 "use client";
-
 import Saved from "@/components/myPlan/Saved";
 import TodaysPlan from "@/components/myPlan/TodaysPlan";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { workoutData } from "@/types/WorkoutData";
 
 const sortOptions = ["Duration", "Calories", "Rating"];
 
-function PlanTabs() {
-  const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
+interface PlanTabsProps {
+  activeTab: "plan" | "saved";
+  setActiveTab: (tab: "plan" | "saved") => void;
+  todaysPlan: workoutData[];
+  savedWorkouts: workoutData[];
+  isLoading: boolean;
+  onRemoveTodaysPlan: (id: string | number) => void;
+  onRemoveSaved: (id: string | number) => void;
+}
+
+function PlanTabs({
+  activeTab,
+  setActiveTab,
+  todaysPlan,
+  savedWorkouts,
+  isLoading,
+  onRemoveTodaysPlan,
+  onRemoveSaved,
+}: PlanTabsProps) {
   const [sortBy, setSortBy] = useState("Duration");
   const [isSortOpen, setIsSortOpen] = useState(false);
+
+  const sortWorkouts = (list: workoutData[]) => {
+    const sorted = [...list];
+    if (sortBy === "Duration") {
+      sorted.sort((a, b) => Number(a.duration || 0) - Number(b.duration || 0));
+    } else if (sortBy === "Calories") {
+      sorted.sort(
+        (b, a) => Number(a.caloriesBurned || 0) - Number(b.caloriesBurned || 0),
+      );
+    } else if (sortBy === "Rating") {
+      sorted.sort((a, b) => Number(b.rating || 0) - Number(a.rating || 0));
+    }
+    return sorted;
+  };
+
+  const sortedTodaysPlan = sortWorkouts(todaysPlan);
+  const sortedSavedWorkouts = sortWorkouts(savedWorkouts);
 
   return (
     <>
@@ -20,7 +54,7 @@ function PlanTabs() {
             onClick={() => setActiveTab("plan")}
             className={
               activeTab === "plan"
-                ? "font-secondary font-bold text-[12px] leading-4 text-title capitalize px-4 py-1.5 bg-[#1F242D] border border-[#2B303D] rounded-lg cursor-pointer"
+                ? "font-secondary font-bold text-[12px] leading-4 text-brand capitalize px-4 py-1.5 bg-[#1F242D] border border-[#2B303D] rounded-lg cursor-pointer"
                 : "font-secondary font-normal text-[12px] leading-4 text-[#8A92A0] capitalize px-4 py-1.5 rounded-lg cursor-pointer"
             }
           >
@@ -30,7 +64,7 @@ function PlanTabs() {
             onClick={() => setActiveTab("saved")}
             className={
               activeTab === "saved"
-                ? "font-secondary font-bold text-[12px] leading-4 text-title capitalize px-9 py-1.5 bg-[#1F242D] border border-[#2B303D] rounded-lg cursor-pointer"
+                ? "font-secondary font-bold text-[12px] leading-4 text-brand capitalize px-9 py-1.5 bg-[#1F242D] border border-[#2B303D] rounded-lg cursor-pointer"
                 : "font-secondary font-normal text-[12px] leading-4 text-[#8A92A0] capitalize px-9 py-1.5 rounded-lg cursor-pointer"
             }
           >
@@ -78,7 +112,19 @@ function PlanTabs() {
         </div>
       </div>
 
-      {activeTab === "plan" ? <TodaysPlan /> : <Saved />}
+      {activeTab === "plan" ? (
+        <TodaysPlan
+          todaysPlan={sortedTodaysPlan}
+          isLoading={isLoading}
+          onRemove={onRemoveTodaysPlan}
+        />
+      ) : (
+        <Saved
+          savedWorkouts={sortedSavedWorkouts}
+          isLoading={isLoading}
+          onRemove={onRemoveSaved}
+        />
+      )}
     </>
   );
 }

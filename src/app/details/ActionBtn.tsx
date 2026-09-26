@@ -6,21 +6,18 @@ import { LuBookmark } from "react-icons/lu";
 import buttonIcon from "@/assets/details/button_icon.png";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import { useWorkoutPlan } from "@/context/WorkoutPlanContext";
 
 interface ActionButtonsProps {
   item: workoutData;
 }
 
 export default function ActionButtons({ item }: ActionButtonsProps) {
-  const handleAddToPlan = () => {
-    const existingPlan = JSON.parse(localStorage.getItem("todaysPlan") || "[]");
-    const isAlreadyAdded = existingPlan.some(
-      (workout: workoutData) => workout.id === item.id,
-    );
+  const { handleAddTodaysPlan, handleAddSaved } = useWorkoutPlan();
 
-    if (!isAlreadyAdded) {
-      const updatedPlan = [...existingPlan, item];
-      localStorage.setItem("todaysPlan", JSON.stringify(updatedPlan));
+  const handleAddToPlan = () => {
+    const added = handleAddTodaysPlan(item);
+    if (added) {
       toast.success("Successfully added to today's plan!");
     } else {
       toast.info("This workout is already in your today's plan!");
@@ -28,16 +25,8 @@ export default function ActionButtons({ item }: ActionButtonsProps) {
   };
 
   const handleSaveForLater = () => {
-    const existingSaved = JSON.parse(
-      localStorage.getItem("savedWorkouts") || "[]",
-    );
-    const isAlreadySaved = existingSaved.some(
-      (workout: workoutData) => workout.id === item.id,
-    );
-
-    if (!isAlreadySaved) {
-      const updatedSaved = [...existingSaved, item];
-      localStorage.setItem("savedWorkouts", JSON.stringify(updatedSaved));
+    const added = handleAddSaved(item);
+    if (added) {
       toast.success("Successfully saved for later!");
     } else {
       toast.info("This workout is already saved!");

@@ -1,40 +1,20 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
-import demoImg from "@/assets/todaysPlan/demo.png";
+import Image from "next/image";
+import { FaPlus } from "react-icons/fa6";
+import Link from "next/link";
 import clock_icon from "@/assets/todaysPlan/clock.png";
 import progress_icon from "@/assets/todaysPlan/progress.png";
 import star_icon from "@/assets/todaysPlan/star.png";
-import Image from "next/image";
-import { IoMdCheckmark } from "react-icons/io";
-import { FaPlus } from "react-icons/fa6";
-import Link from "next/link";
 import { workoutData } from "@/types/WorkoutData";
+import { toast } from "react-toastify";
 
-function Saved() {
-  const [savedWorkouts, setSavedWorkouts] = useState<workoutData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface SavedProps {
+  savedWorkouts: workoutData[];
+  isLoading: boolean;
+  onRemove: (id: string | number) => void;
+}
 
-  // useEffect(() => {
-  //   const storedSaved = JSON.parse(
-  //     localStorage.getItem("savedWorkouts") || "[]",
-  //   );
-  //   setSavedWorkouts(storedSaved);
-  //   setIsLoading(false);
-  // }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const storedSaved = JSON.parse(
-        localStorage.getItem("savedWorkouts") || "[]",
-      );
-      setSavedWorkouts(storedSaved);
-      setIsLoading(false);
-    }, 300); 
-
-    return () => clearTimeout(timer);
-  }, []);
-
+function Saved({ savedWorkouts, isLoading, onRemove }: SavedProps) {
   if (isLoading) {
     return (
       <div className="bg-[#101216] border border-dashed border-title/10 rounded-xl px-4 py-24.25 flex flex-col items-center justify-center mb-10 gap-3">
@@ -45,11 +25,9 @@ function Saved() {
       </div>
     );
   }
-
-  const handleRemoveSaved = (id: string | number) => {
-    const updatedSaved = savedWorkouts.filter((workout) => workout.id !== id);
-    setSavedWorkouts(updatedSaved);
-    localStorage.setItem("savedWorkouts", JSON.stringify(updatedSaved));
+  const handleRemove = (item: workoutData) => {
+    onRemove(item.id);
+    toast.info(`"${item.name}" removed from saved workouts.`);
   };
 
   if (savedWorkouts.length === 0) {
@@ -72,7 +50,7 @@ function Saved() {
   }
 
   return (
-    <div className="grid gap-y-4">
+    <div className="grid gap-y-4 mb-10">
       {savedWorkouts.map((item, index) => (
         <div
           key={item.id !== undefined ? item.id : index}
@@ -125,7 +103,7 @@ function Saved() {
             <FaPlus
               color="#6B7280"
               size={22}
-              onClick={() => handleRemoveSaved(item.id)}
+              onClick={() => handleRemove(item)}
               className="rotate-45 cursor-pointer"
             />
           </div>

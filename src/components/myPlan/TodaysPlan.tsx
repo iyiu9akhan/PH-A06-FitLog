@@ -8,19 +8,24 @@ import { IoMdCheckmark } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import Link from "next/link";
 import { workoutData } from "@/types/WorkoutData";
+import { toast } from "react-toastify";
 
-function TodaysPlan() {
-  const [todaysPlan, setTodaysPlan] = useState<workoutData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface TodaysPlanProps {
+  todaysPlan: workoutData[];
+  isLoading: boolean;
+  onRemove: (id: string | number) => void;
+}
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const storedPlan = JSON.parse(localStorage.getItem("todaysPlan") || "[]");
-      setTodaysPlan(storedPlan);
-      setIsLoading(false);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
+function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
+  const handleMarkAsDone = (item: workoutData) => {
+    onRemove(item.id);
+    toast.success(`"${item.name}" marked as done!`);
+  };
+
+  const handleRemove = (item: workoutData) => {
+    onRemove(item.id);
+    toast.info(`"${item.name}" removed from today's plan.`);
+  };
 
   if (isLoading) {
     return (
@@ -33,14 +38,9 @@ function TodaysPlan() {
     );
   }
 
-  const handleRemove = (id: string | number) => {
-    const updatedPlan = todaysPlan.filter((workout) => workout.id !== id);
-    setTodaysPlan(updatedPlan);
-    localStorage.setItem("todaysPlan", JSON.stringify(updatedPlan));
-  };
   if (todaysPlan.length === 0) {
     return (
-      <div className="bg-[#101216] border border-dashed border-title/10 rounded-xl px-4 py-24.25 flex flex-col items-center mb-10">
+      <div className="bg-[#101216] border border-dashed border-title/10 rounded-xl px-4 py-24.25 flex flex-col items-center">
         <h1 className="font-primary font-bold text-[20px] leading-5 tracking-[0.7px] text-title mb-2 uppercase">
           nothing here yet
         </h1>
@@ -57,7 +57,7 @@ function TodaysPlan() {
     );
   }
   return (
-    <div className="grid gap-y-4">
+    <div className="grid gap-y-4 mb-10">
       {todaysPlan.map((item, index) => (
         <div
           key={item.id !== undefined ? item.id : index}
@@ -107,14 +107,17 @@ function TodaysPlan() {
             >
               view details
             </Link>
-            <button className="font-secondary font-semibold text-[12px] leading-4  px-4.5 py-2.25 rounded-full border border-[#374151] flex items-center gap-1.5 bg-brand text-black cursor-pointer">
+            <button
+              onClick={() => handleMarkAsDone(item)}
+              className="font-secondary font-semibold text-[12px] leading-4  px-4.5 py-2.25 rounded-full border border-[#374151] flex items-center gap-1.5 bg-brand text-black cursor-pointer"
+            >
               <IoMdCheckmark size={18} />
               Mark as Done
             </button>
             <FaPlus
               color="#6B7280"
               size={22}
-              onClick={() => handleRemove(item.id)}
+              onClick={() => handleRemove(item)}
               className="rotate-45 cursor-pointer"
             />
           </div>

@@ -5,10 +5,12 @@ import navbar_logo from "@/assets/navbar/navbar_logo.png";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useWorkoutPlan } from "@/context/WorkoutPlanContext";
 // import { Metadata } from "next";
 
 function Navbar() {
   const pathName = usePathname();
+  const { todaysPlan, savedWorkouts } = useWorkoutPlan();
   const links_center = (
     <>
       <li>
@@ -46,7 +48,7 @@ function Navbar() {
       >
         plan{" "}
         <span className="px-1.5 py-0.5  rounded-full bg-brand font-bold text-[11px] text-[#000000]">
-          2
+          {todaysPlan.length}
         </span>
       </Link>
       <Link
@@ -55,7 +57,7 @@ function Navbar() {
       >
         saved{" "}
         <span className="px-1.5 py-0.5  rounded-full border border-[#2D313B] font-bold text-[11px] text-[#D1D5DB]">
-          2
+          {savedWorkouts.length}
         </span>
       </Link>
     </>

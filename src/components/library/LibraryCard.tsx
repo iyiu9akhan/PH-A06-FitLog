@@ -18,7 +18,6 @@ const LibraryCard = async () => {
         {data.map((item) => (
           <Link href={`./details/${item.id}`} key={item.id}>
             <div className="rounded-2xl bg-[#15171D] group hover:border hover:border-brand/50 border border-[#15171D] duration-300">
-              {/* <Image src={item.image} alt="#card_img" className="rounded-t-2xl" /> */}
               <Image
                 src={item.image}
                 alt={item.name}
