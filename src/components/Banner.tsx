@@ -3,6 +3,7 @@ import Container from "./Container";
 import Image from "next/image";
 import bannerImg from "@/assets/banner/banner.png";
 import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa6";
 
 function Banner() {
   return (
@@ -22,9 +23,10 @@ function Banner() {
             </p>
             <Link
               href="#library"
-              className="font-secondary font-bold text-[11px] md:text-[12px] leading-4 tracking-[0.3px] text-[#000000] uppercase px-6 py-3 rounded-md bg-brand"
+              className="font-secondary font-bold text-[11px] md:text-[12px] leading-4 tracking-[0.3px] text-[#000000] uppercase px-6 py-3 rounded-md bg-brand flex items-center gap-2"
             >
               browse workouts
+              <FaArrowRight size={12} />
             </Link>
           </div>
           <div className="mt-20 md:mt-0">
