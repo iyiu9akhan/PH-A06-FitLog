@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import demoImg from "@/assets/todaysPlan/demo.png";
 import clock_icon from "@/assets/todaysPlan/clock.png";
 import progress_icon from "@/assets/todaysPlan/progress.png";
 import star_icon from "@/assets/todaysPlan/star.png";
@@ -12,11 +11,27 @@ import { workoutData } from "@/types/WorkoutData";
 
 function TodaysPlan() {
   const [todaysPlan, setTodaysPlan] = useState<workoutData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedPlan = JSON.parse(localStorage.getItem("todaysPlan") || "[]");
-    setTodaysPlan(storedPlan);
+    const timer = setTimeout(() => {
+      const storedPlan = JSON.parse(localStorage.getItem("todaysPlan") || "[]");
+      setTodaysPlan(storedPlan);
+      setIsLoading(false);
+    }, 300);
+    return () => clearTimeout(timer);
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="bg-[#101216] border border-dashed border-title/10 rounded-xl px-4 py-24.25 flex flex-col items-center justify-center mb-10 gap-3">
+        <div className="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin mb-5"></div>
+        <p className="font-secondary font-medium text-[14px] leading-5 text-subTitle tracking-wide">
+          Loading today's plan...
+        </p>
+      </div>
+    );
+  }
 
   const handleRemove = (id: string | number) => {
     const updatedPlan = todaysPlan.filter((workout) => workout.id !== id);

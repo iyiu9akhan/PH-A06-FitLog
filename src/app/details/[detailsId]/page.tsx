@@ -5,14 +5,13 @@ import Image from "next/image";
 import { LuBookmark } from "react-icons/lu";
 import { workoutData } from "@/types/WorkoutData";
 import ActionButtons from "../ActionBtn";
+import { toast, ToastContainer } from "react-toastify";
 
 interface PageProps {
   params: Promise<{
     detailsId: string;
   }>;
 }
-
-
 
 const page = async ({ params }: PageProps) => {
   const { detailsId } = await params;
@@ -25,6 +24,7 @@ const page = async ({ params }: PageProps) => {
     <>
       <Container>
         <div className="mb-12 mt-32 mx-6 flex justify-between">
+          {/* <ToastContainer /> */}
           <div>
             <Image
               src={data.image}
@@ -138,7 +138,7 @@ const page = async ({ params }: PageProps) => {
                 <p> Save for later</p>
               </button>
             </div> */}
-            <ActionButtons item={data}/>
+            <ActionButtons item={data} />
           </div>
         </div>
       </Container>

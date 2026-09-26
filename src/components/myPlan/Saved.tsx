@@ -1,6 +1,5 @@
 "use client";
-// import React from "react";
-// import Container from "../Container";
+
 import React, { useEffect, useState } from "react";
 import demoImg from "@/assets/todaysPlan/demo.png";
 import clock_icon from "@/assets/todaysPlan/clock.png";
@@ -14,13 +13,38 @@ import { workoutData } from "@/types/WorkoutData";
 
 function Saved() {
   const [savedWorkouts, setSavedWorkouts] = useState<workoutData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const storedSaved = JSON.parse(
+  //     localStorage.getItem("savedWorkouts") || "[]",
+  //   );
+  //   setSavedWorkouts(storedSaved);
+  //   setIsLoading(false);
+  // }, []);
 
   useEffect(() => {
-    const storedSaved = JSON.parse(
-      localStorage.getItem("savedWorkouts") || "[]",
-    );
-    setSavedWorkouts(storedSaved);
+    const timer = setTimeout(() => {
+      const storedSaved = JSON.parse(
+        localStorage.getItem("savedWorkouts") || "[]",
+      );
+      setSavedWorkouts(storedSaved);
+      setIsLoading(false);
+    }, 300); 
+
+    return () => clearTimeout(timer);
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="bg-[#101216] border border-dashed border-title/10 rounded-xl px-4 py-24.25 flex flex-col items-center justify-center mb-10 gap-3">
+        <div className="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin mb-5"></div>
+        <p className="font-secondary font-medium text-[14px] leading-5 text-subTitle tracking-wide">
+          Loading saved workouts...
+        </p>
+      </div>
+    );
+  }
 
   const handleRemoveSaved = (id: string | number) => {
     const updatedSaved = savedWorkouts.filter((workout) => workout.id !== id);
@@ -92,13 +116,12 @@ function Saved() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Link href={`./details/${item.id}`} className="font-secondary font-normal text-[12px] leading-4 text-title capitalize px-4.5 py-2.25 rounded-full border border-[#374151] cursor-pointer">
+            <Link
+              href={`./details/${item.id}`}
+              className="font-secondary font-normal text-[12px] leading-4 text-title capitalize px-4.5 py-2.25 rounded-full border border-[#374151] cursor-pointer"
+            >
               view details
             </Link>
-            {/* <button className="font-secondary font-semibold text-[12px] leading-4  px-4.5 py-2.25 rounded-full border border-[#374151] flex items-center gap-1.5 bg-brand text-black cursor-pointer">
-              <IoMdCheckmark size={18} />
-              Mark as Done
-            </button> */}
             <FaPlus
               color="#6B7280"
               size={22}
