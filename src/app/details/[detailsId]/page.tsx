@@ -1,11 +1,7 @@
-// 'use client';
 import Container from "@/components/Container";
-import buttonIcon from "@/assets/details/button_icon.png";
 import Image from "next/image";
-import { LuBookmark } from "react-icons/lu";
-import { workoutData } from "@/types/WorkoutData";
 import ActionButtons from "../ActionBtn";
-import { toast, ToastContainer } from "react-toastify";
+import { getWorkoutById } from "@/lib/getWorkouts";
 
 interface PageProps {
   params: Promise<{
@@ -15,23 +11,19 @@ interface PageProps {
 
 const page = async ({ params }: PageProps) => {
   const { detailsId } = await params;
-  const res = await fetch(
-    `https://api.abcz.workers.dev/api/fitlog/${detailsId}`,
-  );
-  const data: workoutData = await res.json();
+  const data = await getWorkoutById(detailsId);
 
   return (
     <>
       <Container>
-        <div className="mb-12 mt-32 mx-6 flex justify-between">
-          {/* <ToastContainer /> */}
+       <div className="mb-6 md:mb-12 mt-25 md:mt-32 mx-6 md:flex justify-between overflow-hidden">
           <div>
             <Image
               src={data.image}
               alt={data.name}
               width={588}
               height={735}
-              className="rounded-t-2xl w-147 h-183.75 object-cover rounded-2xl"
+              className="rounded-t-2xl w-147 md:h-183.75 object-cover rounded-2xl mb-10 md:mb-0"
             />
           </div>
           <div>
@@ -116,28 +108,11 @@ const page = async ({ params }: PageProps) => {
             <h1 className="font-secondary font-extrabold text-[16px] leading-6 tracking-[0.8px] text-title mb-4">
               INSTRUCTIONS
             </h1>
-            <ol className="list-decimal list-inside space-y-3 font-secondary text-[14px]  leading-[22.8px] text-[#D1D5DB] mb-9">
-              <li>
-                Lie on the bench with eyes under the bar and feet planted.
-              </li>
-              <li>Unrack with locked elbows and lower the bar to mid-chest.</li>
-              <li>
-                Press up in a slight arc until elbows lock without bouncing.
-              </li>
-              <li>
-                Keep shoulder blades pinched and a natural arch in the back.
-              </li>
+            <ol className="list-decimal list-outside md:list-inside pl-6 md:pl-0 space-y-3 font-secondary md:text-[14px] leading-[22.8px] text-[#D1D5DB] mb-9">
+              {data.instructions?.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
             </ol>
-            {/* <div className="flex gap-4 items-center font-secondary">
-              <button className="bg-brand px-6 py-3 rounded-xl text-[#0F1115] font-semibold leading-5 cursor-pointer flex items-center gap-2">
-                <Image src={buttonIcon} alt="#buttonIcon" />
-                <p> Add to today's plan</p>
-              </button>
-              <button className="text-[#E5E7EB] px-6 py-3 rounded-xl border border-[#374151] font-medium leading-5 cursor-pointer flex items-center gap-2">
-                <LuBookmark />
-                <p> Save for later</p>
-              </button>
-            </div> */}
             <ActionButtons item={data} />
           </div>
         </div>

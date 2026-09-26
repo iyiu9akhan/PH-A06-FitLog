@@ -35,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <WorkoutPlanProvider>
           <Navbar />
           <main className="grow">{children}</main>
-          <ToastContainer position="top-right" />
+          <ToastContainer position="top-right" hideProgressBar />
           <Footer />
         </WorkoutPlanProvider>
       </body>

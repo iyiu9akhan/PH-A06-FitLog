@@ -5,7 +5,7 @@ import PlanTabs from "@/components/myPlan/PlanTabs";
 import { useWorkoutPlan } from "@/context/WorkoutPlanContext";
 import { useState } from "react";
 
-function pages() {
+function Pages() {
   const {
     todaysPlan,
     savedWorkouts,
@@ -44,4 +44,4 @@ function pages() {
   );
 }
 
-export default pages;
+export default Pages;

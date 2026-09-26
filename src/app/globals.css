@@ -17,3 +17,8 @@ body {
   color: var(--color-title);
   list-style-type: none;
 }
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}

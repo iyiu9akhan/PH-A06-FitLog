@@ -1,7 +1,10 @@
 "use client";
 import { MyPlanStatsProps } from "@/types/MyPlanStats";
 
-export default function MyPlanStats({ todaysPlan, isLoading }: MyPlanStatsProps) {
+export default function MyPlanStats({
+  todaysPlan,
+  isLoading,
+}: MyPlanStatsProps) {
   const totalExercises = todaysPlan.length;
   const totalMinutes = todaysPlan.reduce(
     (sum, item) => sum + Number(item.duration || 0),
@@ -18,7 +21,7 @@ export default function MyPlanStats({ todaysPlan, isLoading }: MyPlanStatsProps)
         <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle capitalize mb-1">
           exercises
         </p>
-        <h1 className="font-primary font-bold text-[36px] leading-10 text-brand">
+        <h1 className="font-primary font-bold text-[25px] md:text-[36px] leading-10 text-brand">
           {isLoading ? "-" : totalExercises}
         </h1>
       </div>
@@ -26,7 +29,7 @@ export default function MyPlanStats({ todaysPlan, isLoading }: MyPlanStatsProps)
         <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle capitalize mb-1">
           minutes
         </p>
-        <h1 className="font-primary font-bold text-[36px] leading-10 text-title">
+        <h1 className="font-primary font-bold text-[25px] md:text-[36px] leading-10 text-title">
           {isLoading ? "-" : totalMinutes}
         </h1>
       </div>
@@ -34,7 +37,7 @@ export default function MyPlanStats({ todaysPlan, isLoading }: MyPlanStatsProps)
         <p className="font-secondary font-normal text-[12px] leading-4 text-subTitle capitalize mb-1">
           calories
         </p>
-        <h1 className="font-primary font-bold text-[36px] leading-10 text-title">
+        <h1 className="font-primary font-bold text-[25px] md:text-[36px] leading-10 text-title">
           {isLoading ? "-" : totalCalories}
         </h1>
       </div>

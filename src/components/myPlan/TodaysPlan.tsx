@@ -8,7 +8,10 @@ import { IoMdCheckmark } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import Link from "next/link";
 import { workoutData } from "@/types/WorkoutData";
-import { toast } from "react-toastify";
+import {
+  showDeleteToast,
+  showSuccessToast,
+} from "../customToast/ToastProvider";
 
 interface TodaysPlanProps {
   todaysPlan: workoutData[];
@@ -19,12 +22,12 @@ interface TodaysPlanProps {
 function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
   const handleMarkAsDone = (item: workoutData) => {
     onRemove(item.id);
-    toast.success(`"${item.name}" marked as done!`);
+    showSuccessToast("Success", `${item.name} marked as done!`);
   };
 
   const handleRemove = (item: workoutData) => {
     onRemove(item.id);
-    toast.info(`"${item.name}" removed from today's plan.`);
+    showDeleteToast("Deleted", `${item.name} removed from today's plan.`);
   };
 
   if (isLoading) {
@@ -61,15 +64,15 @@ function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
       {todaysPlan.map((item, index) => (
         <div
           key={item.id !== undefined ? item.id : index}
-          className="p-4 rounded-2xl bg-[#14171E] flex items-center justify-between"
+          className="p-4 rounded-2xl bg-[#14171E] flex flex-col md:flex-row md:items-center justify-between"
         >
-          <div className="flex items-center gap-4">
+          <div className="md:flex items-center gap-4">
             <Image
               src={item.image}
               alt={item.name}
               width={144}
               height={80}
-              className="h-20 w-36 rounded-xl object-cover"
+              className="w-full sm:w-36 h-48 sm:h-20 rounded-xl object-cover mb-5 md:mb-0"
             />
             <div>
               <h1 className="font-primary font-bold text-[16px] leading-6 tracking-[0.4px] text-title mb-0.5 uppercase">
@@ -100,10 +103,10 @@ function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mt-5 md:mt-0">
             <Link
               href={`./details/${item.id}`}
-              className="font-secondary font-normal text-[12px] leading-4 text-title capitalize px-4.5 py-2.25 rounded-full border border-[#374151] cursor-pointer"
+              className="font-secondary font-normal text-[12px] leading-4 text-title capitalize px-4.5 py-2.25 rounded-full border border-[#374151] cursor-pointer hover:text-brand hover:border-brand duration-300"
             >
               view details
             </Link>
@@ -115,10 +118,9 @@ function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
               Mark as Done
             </button>
             <FaPlus
-              color="#6B7280"
               size={22}
               onClick={() => handleRemove(item)}
-              className="rotate-45 cursor-pointer"
+              className="rotate-45 cursor-pointer text-[#6B7280] hover:text-[#830B24] transition-colors duration-200"
             />
           </div>
         </div>

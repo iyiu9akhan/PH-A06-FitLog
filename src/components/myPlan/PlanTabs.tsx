@@ -48,8 +48,8 @@ function PlanTabs({
 
   return (
     <>
-      <div className="flex items-center justify-between mb-6">
-        <div className="bg-[#151921] border border-[#232732] rounded-xl inline-flex items-center gap-0.5 px-1 py-1.25 ">
+      <div className="flex flex-col md:flex-row gap-y-5 md:gap-y-0 items-center justify-between mb-6">
+        <div className="bg-[#151921] border border-[#232732] rounded-xl inline-flex items-center gap-0.5 px-1 py-1.25">
           <p
             onClick={() => setActiveTab("plan")}
             className={
