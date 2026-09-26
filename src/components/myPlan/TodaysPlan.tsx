@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import clock_icon from "@/assets/todaysPlan/clock.png";
 import progress_icon from "@/assets/todaysPlan/progress.png";
 import star_icon from "@/assets/todaysPlan/star.png";
@@ -64,15 +64,15 @@ function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
       {todaysPlan.map((item, index) => (
         <div
           key={item.id !== undefined ? item.id : index}
-          className="p-4 rounded-2xl bg-[#14171E] flex flex-col md:flex-row md:items-center justify-between"
+          className="p-4 rounded-2xl bg-[#14171E] flex flex-col md:flex-row md:items-center md:justify-between gap-5 md:gap-4"
         >
-          <div className="md:flex items-center gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
             <Image
               src={item.image}
               alt={item.name}
               width={144}
               height={80}
-              className="w-full sm:w-36 h-48 sm:h-20 rounded-xl object-cover mb-5 md:mb-0"
+              className="w-full md:w-36 h-48 md:h-20 rounded-xl object-cover shrink-0"
             />
             <div>
               <h1 className="font-primary font-bold text-[16px] leading-6 tracking-[0.4px] text-title mb-0.5 uppercase">
@@ -83,19 +83,19 @@ function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
               </p>
               <div className="flex items-center gap-[9.34px]">
                 <div className="flex items-center gap-1.5">
-                  <Image src={clock_icon} alt="#progress_icon" />
+                  <Image src={clock_icon} alt="clock icon" />
                   <p className="font-secondary font-normal text-[12px] leading-4 text-[#D1D5DB]">
                     {item.duration} min
                   </p>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Image src={progress_icon} alt="#progress_icon" />
+                  <Image src={progress_icon} alt="calories icon" />
                   <p className="font-secondary font-normal text-[12px] leading-4 text-[#D1D5DB]">
                     {item.caloriesBurned} kcal
                   </p>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Image src={star_icon} alt="#progress_icon" />
+                  <Image src={star_icon} alt="rating icon" />
                   <p className="font-secondary font-normal text-[12px] leading-4 text-[#D1D5DB]">
                     {item.rating}
                   </p>
@@ -103,16 +103,16 @@ function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-3 mt-5 md:mt-0">
+          <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
             <Link
               href={`./details/${item.id}`}
-              className="font-secondary font-normal text-[12px] leading-4 text-title capitalize px-4.5 py-2.25 rounded-full border border-[#374151] cursor-pointer hover:text-brand hover:border-brand duration-300"
+              className="font-secondary font-normal text-[12px] leading-4 text-title capitalize px-4.5 py-2.25 rounded-full border border-[#374151] cursor-pointer hover:text-brand hover:border-brand duration-300 whitespace-nowrap"
             >
               view details
             </Link>
             <button
               onClick={() => handleMarkAsDone(item)}
-              className="font-secondary font-semibold text-[12px] leading-4  px-4.5 py-2.25 rounded-full border border-[#374151] flex items-center gap-1.5 bg-brand text-black cursor-pointer"
+              className="font-secondary font-semibold text-[12px] leading-4 px-4.5 py-2.25 rounded-full border border-[#374151] flex items-center gap-1.5 bg-brand text-black cursor-pointer whitespace-nowrap"
             >
               <IoMdCheckmark size={18} />
               Mark as Done
@@ -120,7 +120,7 @@ function TodaysPlan({ todaysPlan, isLoading, onRemove }: TodaysPlanProps) {
             <FaPlus
               size={22}
               onClick={() => handleRemove(item)}
-              className="rotate-45 cursor-pointer text-[#6B7280] hover:text-[#830B24] transition-colors duration-200"
+              className="rotate-45 cursor-pointer text-[#6B7280] hover:text-[#830B24] transition-colors duration-200 shrink-0"
             />
           </div>
         </div>

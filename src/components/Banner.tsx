@@ -8,8 +8,8 @@ function Banner() {
   return (
     <div>
       <Container>
-        <div className="mx-3 md:mx-6 mt-24 md:mt-32 mb-8 md:mb-16 px-7 md:px-14 py-9 md:py-18.25 bg-[#15171D] rounded-2xl  md:flex justify-between items-center">
-          <div>
+        <div className="mx-3 md:mx-6 mt-24 md:mt-32 mb-8 md:mb-16 px-7 md:px-14 py-9 md:py-18.25 bg-[#15171D] rounded-2xl flex flex-col items-center text-center md:flex-row md:justify-between md:items-center md:text-left">
+          <div className="flex flex-col items-center md:items-start">
             <p className="font-secondary font-bold text-[11px] leading-[16.5px] tracking-[1.1px] text-brand mb-5">
               WORKOUT LIBRARY
             </p>

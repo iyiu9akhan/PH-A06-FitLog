@@ -16,14 +16,14 @@ const page = async ({ params }: PageProps) => {
   return (
     <>
       <Container>
-       <div className="mb-6 md:mb-12 mt-25 md:mt-32 mx-6 md:flex justify-between overflow-hidden">
-          <div>
+        <div className="mb-6 md:mb-12 mt-25 md:mt-32 mx-6 flex flex-col gap-10 md:flex-row md:justify-between md:gap-8 overflow-hidden">
+          <div className="w-full md:w-2/5 lg:w-auto">
             <Image
               src={data.image}
               alt={data.name}
               width={588}
               height={735}
-              className="rounded-t-2xl w-147 md:h-183.75 object-cover rounded-2xl mb-10 md:mb-0"
+              className="rounded-t-2xl w-full h-64 sm:h-80 md:h-96 lg:w-147 lg:h-183.75 object-cover rounded-2xl"
             />
           </div>
           <div>

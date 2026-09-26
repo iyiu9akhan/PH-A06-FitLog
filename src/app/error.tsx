@@ -32,7 +32,7 @@ export default function Error({
         <button
           onClick={handleRetry}
           disabled={isPending}
-          className="font-secondary font-semibold text-[12px] text-black px-6 py-2.5 rounded-full bg-brand hover:opacity-90 transition cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-2 min-w-[110px] justify-center"
+          className="font-secondary font-semibold text-[12px] text-black px-6 py-2.5 rounded-full bg-brand hover:opacity-90 transition cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-2 min-w-27.5 justify-center"
         >
           {isPending ? (
             <>
